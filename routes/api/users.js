@@ -69,23 +69,15 @@ router.delete("/:userId", async (req, res, next) => {
 
 // update
 
-// router.put("/:userId", async (req, res, next) => {
-//   const { username, email, firstName, lastName, state, role } = req.body;
-//   if (!username || !email || !firstName || !lastName || !state || !role) {
-//     res.status(400);
-//     res.json({ message: "missing required name field" });
-//     return;
-//   }
-//   const { userId } = req.params;
-//   db.updateUserById(
-//     userId,
-//     username,
-//     email,
-//     firstName,
-//     lastName,
-//     state,
-//     role
-//   );
-// });
+router.put("/:userId", async (req, res, next) => {
+  const { username, email, firstName, lastName, state, role } = req.body;
+  if (!username || !email || !firstName || !lastName || !state || !role) {
+    res.status(400);
+    res.json({ message: "missing required name field" });
+    return;
+  }
+  const { userId } = req.params;
+  db.updateUserById(userId, username, email, firstName, lastName, state, role);
+});
 
 module.exports = router;
